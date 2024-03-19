@@ -1,0 +1,221 @@
+﻿Program.Sub.ScreenSU.Start
+Gui.frmStrikerExport..Create(BaseForm)
+Gui.frmStrikerExport..Caption("Striker Export File Generation")
+Gui.frmStrikerExport..Size(7125,1995)
+Gui.frmStrikerExport..MinX(0)
+Gui.frmStrikerExport..MinY(0)
+Gui.frmStrikerExport..Position(0,0)
+Gui.frmStrikerExport..AlwaysOnTop(False)
+Gui.frmStrikerExport..FontName("Tahoma")
+Gui.frmStrikerExport..FontSize(8.25)
+Gui.frmStrikerExport..ControlBox(True)
+Gui.frmStrikerExport..MaxButton(True)
+Gui.frmStrikerExport..MinButton(True)
+Gui.frmStrikerExport..MousePointer(0)
+Gui.frmStrikerExport..Moveable(True)
+Gui.frmStrikerExport..Sizeable(True)
+Gui.frmStrikerExport..ShowInTaskBar(True)
+Gui.frmStrikerExport..TitleBar(True)
+Gui.frmStrikerExport..Event(UnLoad,frmStrikerExport_UnLoad)
+Gui.frmStrikerExport.txtStartingJob.Create(TextBox,"",True,1500,300,0,210,420,True,0,"Tahoma",8.25,,1)
+Gui.frmStrikerExport.txtStartingJob.Event(LostFocus,txtStartingJob_LostFocus)
+Gui.frmStrikerExport.txtStartingSuffix.Create(TextBox,"",True,615,300,0,1890,420,True,0,"Tahoma",8.25,,1)
+Gui.frmStrikerExport.cmdStartingJob.Create(Button)
+Gui.frmStrikerExport.cmdStartingJob.Enabled(True)
+Gui.frmStrikerExport.cmdStartingJob.Visible(True)
+Gui.frmStrikerExport.cmdStartingJob.Zorder(0)
+Gui.frmStrikerExport.cmdStartingJob.Size(585,345)
+Gui.frmStrikerExport.cmdStartingJob.Position(2640,405)
+Gui.frmStrikerExport.cmdStartingJob.Caption("^")
+Gui.frmStrikerExport.cmdStartingJob.FontName("Tahoma")
+Gui.frmStrikerExport.cmdStartingJob.FontSize(8.25)
+Gui.frmStrikerExport.cmdStartingJob.Event(Click,cmdStartingJob_Click)
+Gui.frmStrikerExport.txtEndingJob.Create(TextBox,"",True,1500,300,0,3630,420,True,0,"Tahoma",8.25,,1)
+Gui.frmStrikerExport.txtEndingSuffix.Create(TextBox,"",True,615,300,0,5250,420,True,0,"Tahoma",8.25,,1)
+Gui.frmStrikerExport.cmdEndingJob.Create(Button)
+Gui.frmStrikerExport.cmdEndingJob.Enabled(True)
+Gui.frmStrikerExport.cmdEndingJob.Visible(True)
+Gui.frmStrikerExport.cmdEndingJob.Zorder(0)
+Gui.frmStrikerExport.cmdEndingJob.Size(615,345)
+Gui.frmStrikerExport.cmdEndingJob.Position(5985,420)
+Gui.frmStrikerExport.cmdEndingJob.Caption("^")
+Gui.frmStrikerExport.cmdEndingJob.FontName("Tahoma")
+Gui.frmStrikerExport.cmdEndingJob.FontSize(8.25)
+Gui.frmStrikerExport.cmdEndingJob.Event(Click,cmdEndingJob_Click)
+Gui.frmStrikerExport.cmdProcess.Create(Button)
+Gui.frmStrikerExport.cmdProcess.Enabled(True)
+Gui.frmStrikerExport.cmdProcess.Visible(True)
+Gui.frmStrikerExport.cmdProcess.Zorder(0)
+Gui.frmStrikerExport.cmdProcess.Size(1125,345)
+Gui.frmStrikerExport.cmdProcess.Position(225,840)
+Gui.frmStrikerExport.cmdProcess.Caption("Process")
+Gui.frmStrikerExport.cmdProcess.FontName("Tahoma")
+Gui.frmStrikerExport.cmdProcess.FontSize(8.25)
+Gui.frmStrikerExport.cmdProcess.Event(Click,cmdProcess_Click)
+Gui.frmStrikerExport.lbl1.Create(Label,"Starting Work Order",True,1455,195,0,240,150,True,0,"Tahoma",8.25,,0,0)
+Gui.frmStrikerExport.lbl1.BorderStyle(0)
+Gui.frmStrikerExport.lbl2.Create(Label,"Ending Work Order",True,1365,195,0,3645,135,True,0,"Tahoma",8.25,,0,0)
+Gui.frmStrikerExport.lbl2.BorderStyle(0)
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+F.ODBC.Connection!CON.OPENCOMPANYCONNECTION(90)
+gui.frmStrikerExport..Show
+Program.Sub.Main.End
+
+Program.Sub.cmdProcess_Click.Start
+f.Intrinsic.Control.Try
+	V.Local.sSql.Declare
+	v.Local.sret.Declare
+	v.Local.sFile.Declare
+	v.Local.sHeaderDetail.Declare
+	'F.Intrinsic.String.Concat("Work Order, Part Number, Minimum Quantity, Material Type, Material Thickness, Release Date",V.Ambient.NewLine,v.Local.sHeaderDetail)
+	v.Local.sDetail.Declare
+	v.Local.sWO.Declare
+	v.Local.sPart.Declare
+	v.Local.fQty.Declare
+	v.Local.sMatCode.Declare
+	v.Local.sMatType.Declare
+	v.Local.sReleasedate.Declare
+	v.Local.fMatThickness.Declare
+	v.Local.dReleaseDate.Declare
+	
+	v.Local.sStartingJob.Declare
+	v.Local.sStartingJob.Set(v.Screen.frmStrikerExport!txtStartingJob.Text)
+	v.local.sStartingSuffix.Declare
+	v.Local.sStartingSuffix.Set(v.Screen.frmStrikerExport!txtStartingSuffix.text)
+	v.local.sEndingJob.Declare
+	v.Local.sEndingJob.Set(v.Screen.frmStrikerExport!txtEndingJob.Text)
+	v.Local.sEndingSuffix.Declare
+	v.Local.sEndingSuffix.Set(v.Screen.frmStrikerExport!txtEndingSuffix.text)
+	f.Intrinsic.String.Concat(v.Caller.GlobalDir,"\Striker CSV Files\",V.Local.sStartingJob,v.Local.sStartingSuffix," to ",v.Local.sEndingJob,v.Local.sEndingSuffix,".mrp",V.Local.sFile)
+	v.Local.i.Declare
+	
+	F.Intrinsic.Control.If(V.DataTable.dt.Exists)
+		F.Data.Datatable.Close("dt")
+	F.Intrinsic.Control.EndIf
+	f.Intrinsic.String.Build("SELECT * FROM V_JOB_OPERATIONS WHERE CONCAT(JOB,SUFFIX)>='{0}{1}' AND CONCAT(JOB,SUFFIX)<='{2}{3}' AND LMO='L' AND PART='TP01' AND FLAG_SET_UP<>'Y' ORDER BY JOB, SUFFIX",v.Local.sStartingJob,v.Local.sStartingSuffix,v.Local.sEndingJob,v.Local.sEndingSuffix,v.Local.sSql)
+	f.Data.Datatable.CreateFromSQL("dt","con",v.Local.sSql,true)
+	
+	f.Intrinsic.Control.For(v.Local.i,0,v.DataTable.dt.RowCount--,1)
+		'Set Work Order, Part
+		f.Intrinsic.String.Concat(v.DataTable.dt(v.Local.i).JOB!Fieldvaltrim,"-",v.DataTable.dt(v.Local.i).SUFFIX!Fieldvaltrim,"-",v.DataTable.dt(v.Local.i).SEQ!Fieldvaltrim,v.Local.sWO)
+		v.Local.sPart.Set(v.DataTable.dt(v.Local.i).Router!fieldvaltrim)
+		v.Local.dReleaseDate.Set(v.DataTable.dt(v.Local.i).DATE_START!Fieldval)
+		
+		'Get Run Quantity
+		F.Intrinsic.String.Build("SELECT QTY_ORDER FROM V_JOB_HEADER WHERE JOB='{0}' AND SUFFIX='{1}'",v.DataTable.dt(v.Local.i).JOB!FIELDVALTRIM,V.DataTable.dt(v.Local.i).SUFFIX!Fieldvaltrim,v.Local.sSql)
+		f.ODBC.Connection!con.ExecuteAndReturn(v.Local.sSql,v.Local.fQty)
+		
+		'Get/set the material code, type, and thickness
+		F.Intrinsic.String.Build("select PART from JOB_OPERATIONS where job='{0}' AND SUFFIX='{1}' AND LMO='M' AND CODE_SORT_OPER='SHEETMETAL'",v.DataTable.dt(v.Local.i).JOB!fieldvaltrim,v.DataTable.dt(v.Local.i).SUFFIX!fIELDVALTRIM,v.Local.sSql)
+		f.ODBC.Connection!con.ExecuteAndReturn(v.Local.sSql,v.Local.sMatCode)
+		
+		f.Intrinsic.String.Build("SELECT TEXT_INFO2, THICKNESS FROM V_INVENTORY_ALL WHERE PART='{0}'",v.Local.sMatCode,v.Local.sSql)
+		f.ODBC.Connection!con.ExecuteAndReturn(v.Local.sSql,v.Local.sRet)
+		f.Intrinsic.String.Split(v.Local.sret,"*!*",v.Local.sret)
+		v.Local.sMatType.Set(v.Local.sret(0))
+		v.Local.fMatThickness.Set(v.Local.sret(1))
+		F.Intrinsic.String.Format(V.Local.dReleaseDate,"DD/MM/YYYY",V.Local.sReleasedate)
+		f.Intrinsic.String.Concat(v.Local.sWO,",",v.Local.sPart,",",v.Local.fQty,",",v.Local.sMatType,",",v.Local.fMatThickness,",",v.Local.sReleasedate,v.Local.sDetail)
+		f.Intrinsic.String.Concat(v.Local.sHeaderDetail,v.Local.sDetail,v.Ambient.NewLine,v.Local.sHeaderDetail)	
+	f.Intrinsic.Control.Next(v.Local.i)
+	
+	f.Intrinsic.File.String2File(v.Local.sFile,v.Local.sHeaderDetail)
+	f.Intrinsic.UI.Msgbox("MRP File Created.")
+f.Intrinsic.Control.Catch
+	F.Intrinsic.UI.Msgbox(V.Ambient.ErrorDescription)
+	F.Intrinsic.Control.End
+f.Intrinsic.Control.EndTry
+Program.Sub.cmdProcess_Click.End
+
+Program.Sub.cmdStartingJob_Click.Start
+f.Intrinsic.Control.Try
+	V.Local.sSQL.Declare
+	V.Local.sCol.Declare
+	V.Local.sColW.Declare
+	V.Local.sRet.Declare
+	V.Local.sSQL.set("SELECT JOB, SUFFIX, PART, DESCRIPTION FROM V_JOB_HEADER order by JOB, SUFFIX")
+	
+	'Split Column Names into an array (*!* delimited string)
+	F.Intrinsic.String.Split("Job*!*Suffix*!*Part*!*Description","*!*",V.Local.sCol)
+	
+	'Split Column widths into an array (*!* delimited string)
+	F.Intrinsic.String.Split("700*!*400*!*2100*!*3100","*!*",V.Local.sColW)
+	F.Intrinsic.UI.Browser("Select your Starting Job","con",V.Local.sSQL,V.Local.sCol,V.Local.sColW,V.Local.sRet)
+	F.Intrinsic.Control.If(V.Local.sRet,<>,"***CANCEL***")
+		F.Intrinsic.String.Split(V.Local.sRet,"*!*",v.Local.sRet)
+		gui.frmStrikerExport.txtStartingJob.Text(v.Local.sRet(0))
+		gui.frmStrikerExport.txtStartingSuffix.Text(v.Local.sRet(1))
+	F.Intrinsic.Control.EndIf
+	
+f.Intrinsic.Control.Catch
+	F.Intrinsic.UI.Msgbox(V.Ambient.ErrorDescription)
+	f.Intrinsic.Control.CallSub(frmStrikerExport_Unload)
+f.Intrinsic.Control.EndTry
+Program.Sub.cmdStartingJob_Click.End
+
+Program.Sub.cmdEndingJob_Click.Start
+f.Intrinsic.Control.Try
+	V.Local.sSQL.Declare
+	V.Local.sCol.Declare
+	V.Local.sColW.Declare
+	V.Local.sRet.Declare
+	V.Local.sSQL.set("SELECT JOB, SUFFIX, PART, DESCRIPTION FROM V_JOB_HEADER order by JOB, SUFFIX")
+	
+	'Split Column Names into an array (*!* delimited string)
+	F.Intrinsic.String.Split("Job*!*Suffix*!*Part*!*Description","*!*",V.Local.sCol)
+	
+	'Split Column widths into an array (*!* delimited string)
+	F.Intrinsic.String.Split("700*!*400*!*2100*!*3100","*!*",V.Local.sColW)
+	F.Intrinsic.UI.Browser("Select your Starting Job","con",V.Local.sSQL,V.Local.sCol,V.Local.sColW,V.Local.sRet)
+	F.Intrinsic.Control.If(V.Local.sRet,<>,"***CANCEL***")
+		F.Intrinsic.String.Split(V.Local.sRet,"*!*",v.Local.sRet)
+		gui.frmStrikerExport.txtEndingJob.Text(v.Local.sRet(0))
+		gui.frmStrikerExport.txtEndingSuffix.Text(v.Local.sRet(1))
+	F.Intrinsic.Control.EndIf
+	
+f.Intrinsic.Control.Catch
+	F.Intrinsic.UI.Msgbox(V.Ambient.ErrorDescription)
+	f.Intrinsic.Control.CallSub(frmStrikerExport_Unload)
+f.Intrinsic.Control.EndTry
+Program.Sub.cmdEndingJob_Click.End
+
+Program.Sub.frmStrikerExport_UnLoad.Start
+f.ODBC.Connection!con.Close
+f.Intrinsic.Control.End
+Program.Sub.frmStrikerExport_UnLoad.End
+
+Program.Sub.txtStartingJob_LostFocus.Start
+f.Intrinsic.Control.Try
+	v.Local.sJob.Declare
+	v.Local.sSql.Declare
+	v.Local.sret.Declare
+	f.Intrinsic.String.LPad(v.Screen.frmStrikerExport!txtStartingJob.Text,"0",6,v.Local.sJob)
+	gui.frmStrikerExport.txtStartingJob.Text(v.Local.sJob)
+	gui.frmStrikerExport.txtEndingJob.Text(v.Local.sJob)
+	
+	'Grab first suffix
+	f.Intrinsic.String.Build("SELECT TOP 1 SUFFIX FROM V_JOB_HEADER WHERE JOB='{0}' ORDER BY JOB, SUFFIX",V.Local.sJob,v.Local.sSql)
+	f.ODBC.Connection!con.ExecuteAndReturn(v.Local.sSql,v.Local.sret)
+	gui.frmStrikerExport.txtStartingSuffix.Text(v.Local.sret)
+	
+	
+	'Grab last suffix
+	f.Intrinsic.String.Build("SELECT MAX(SUFFIX) FROM V_JOB_HEADER WHERE JOB='{0}'",V.Local.sJob,v.Local.sSql)
+	f.ODBC.Connection!con.ExecuteAndReturn(v.Local.sSql,v.Local.sret)
+	gui.frmStrikerExport.txtEndingSuffix.Text(v.Local.sret)
+	
+f.Intrinsic.Control.Catch
+	F.Intrinsic.UI.Msgbox(V.Ambient.ErrorDescription)
+	f.Intrinsic.Control.CallSub(frmStrikerExport_Unload)
+f.Intrinsic.Control.EndTry
+Program.Sub.txtStartingJob_LostFocus.End
+
+Program.Sub.Comments.Start
+${$5$}$3.0.0.0$}$1
+${$6$}$danny$}$20220525085644254$}$vHb1xXYx9N6tVmD9kbYCbxcjAw/nFOKJ5Ia2/5ivt2UE2cmpr1GMorgZ3in5VkgWdv/PcGsjxN0=
+Program.Sub.Comments.End
