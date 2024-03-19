@@ -1,0 +1,238 @@
+Program.Sub.ScreenSU.Start
+Gui.frmImport..Create(BaseForm)
+Gui.frmImport..Caption("Import Files")
+Gui.frmImport..Size(5415,3000)
+Gui.frmImport..MinX(0)
+Gui.frmImport..MinY(0)
+Gui.frmImport..Position(0,0)
+Gui.frmImport..AlwaysOnTop(False)
+Gui.frmImport..FontName("Tahoma")
+Gui.frmImport..FontSize(8.25)
+Gui.frmImport..ControlBox(True)
+Gui.frmImport..MaxButton(True)
+Gui.frmImport..MinButton(True)
+Gui.frmImport..MousePointer(0)
+Gui.frmImport..Moveable(True)
+Gui.frmImport..Sizeable(True)
+Gui.frmImport..ShowInTaskBar(True)
+Gui.frmImport..TitleBar(True)
+Gui.frmImport..Event(UnLoad,frmImport_UnLoad)
+Gui.frmImport.trvDragDropFiles.Create(TreeView)
+Gui.frmImport.trvDragDropFiles.Enabled(True)
+Gui.frmImport.trvDragDropFiles.Visible(True)
+Gui.frmImport.trvDragDropFiles.Zorder(0)
+Gui.frmImport.trvDragDropFiles.Size(5235,2175)
+Gui.frmImport.trvDragDropFiles.Position(90,255)
+Gui.frmImport.trvDragDropFiles.FontName("Tahoma")
+Gui.frmImport.trvDragDropFiles.FontSize(8.25)
+Gui.frmImport.trvDragDropFiles.Event(DragDropFile,trvDragDropFiles_DragDropFile)
+Gui.frmImport.lblDragDrop.Create(Label,"Drag and Drop your Files Here:",True,2235,195,0,90,15,True,0,"Tahoma",8.25,,0,0)
+Gui.frmImport.lblDragDrop.BorderStyle(0)
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+Program.External.Include.Library("6000.lib")
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+f.ODBC.Connection!con.opencompanyconnection(90)
+'f.Intrinsic.Control.CallSub(trvDragDropFiles_DragDropFile)
+gui.frmImport..Show
+Program.Sub.Main.End
+
+Program.Sub.frmImport_UnLoad.Start
+f.ODBC.Connection!con.Close
+f.Intrinsic.Control.End
+Program.Sub.frmImport_UnLoad.End
+
+Program.Sub.trvDragDropFiles_DragDropFile.Start
+f.Intrinsic.Control.Try
+	v.Local.i.Declare
+	v.Local.sSql.Declare
+	v.Local.sRet.Declare
+	v.local.sXML.Declare
+	v.Local.sFiles.Declare
+	v.Local.sFiles.Set(v.Args.Files)
+	v.Local.sNestFile.Declare
+	v.Local.sNestPath.Declare
+	v.Local.sNestFileName.Declare
+	v.Local.fMatUsage.Declare
+	v.Local.fWOQty.Declare
+	v.Local.fBlankqty.Declare
+	v.Local.sDoc.Declare
+	v.Local.sNestID.Declare
+	V.Local.sMaterialCode.Declare
+	v.Local.sWorkOrder.Declare
+	v.Local.sErrorDescription.Declare
+	V.Local.sAllErrors.Declare
+	v.Local.sNum.Declare
+	v.Local.sNumsetup.Declare
+	v.Local.iNum.Declare
+	v.Local.bEof.Declare
+	
+	'V.Local.sFiles.Set("G:\APPS\Global\Striker CSV Files\z test 220929\!Master_z test 220929 b.xml")
+	f.Data.Datatable.Create("dtNest",true)
+	f.Data.Datatable.AddColumn("dtNest","NestID","string")
+	f.Data.Datatable.AddColumn("dtNest","FlexSchedule","string")
+	f.Data.Datatable.AddColumn("dtNest","FlexScheduleSetup","string")
+	f.Data.Datatable.AddColumn("dtNest","WorkOrder","string")
+	f.Data.Datatable.AddColumn("dtNest","MaterialCode","string")
+	f.Data.Datatable.AddColumn("dtNest","WorkOrderQty","float")
+	f.Data.Datatable.AddColumn("dtNest","MaterialUsage","float")
+	f.Data.Datatable.AddColumn("dtNest","QtyToOrder","float")
+	f.Data.Datatable.AddColumn("dtNest","NestFile","string")
+	
+'	f.Intrinsic.String.Concat(v.Local.sFiles,"G:\APPS\Global\Striker CSV Files\export test\z test 220929 b-1-1.xml*!*",v.Local.sFiles)
+'	f.Intrinsic.String.Concat(v.Local.sFiles,"G:\APPS\Global\Striker CSV Files\export test\z test 220929 b-1-2.xml*!*",v.Local.sFiles)
+'	f.Intrinsic.String.Concat(v.Local.sFiles,"G:\APPS\Global\Striker CSV Files\export test\z test 220929 b-1-3.xml*!*",v.Local.sFiles)
+'	f.Intrinsic.String.Concat(v.Local.sFiles,"G:\APPS\Global\Striker CSV Files\export test\z test 220929 b-1-4.xml*!*",v.Local.sFiles)
+'	f.Intrinsic.String.Concat(v.Local.sFiles,"G:\APPS\Global\Striker CSV Files\export test\z test 220929 b-1-5.xml*!*",v.Local.sFiles)
+'	f.Intrinsic.String.Concat(v.Local.sFiles,"G:\APPS\Global\Striker CSV Files\export test\z test 220929 b-1-6.xml*!*",v.Local.sFiles)
+'	f.Intrinsic.String.Concat(v.Local.sFiles,"G:\APPS\Global\Striker CSV Files\export test\z test 220929 b-1-7.xml*!*",v.Local.sFiles)
+'	f.Intrinsic.String.Concat(v.Local.sFiles,"G:\APPS\Global\Striker CSV Files\export test\z test 220929 b-1-8.xml*!*",v.Local.sFiles)
+'	f.Intrinsic.String.Concat(v.Local.sFiles,"G:\APPS\Global\Striker CSV Files\export test\z test 220929 b-1-9.xml*!*",v.Local.sFiles)
+'	f.Intrinsic.String.Concat(v.Local.sFiles,"G:\APPS\Global\Striker CSV Files\export test\z test 220929 b-1-10.xml*!*",v.Local.sFiles)
+'	f.Intrinsic.String.Concat(v.Local.sFiles,"G:\APPS\Global\Striker CSV Files\export test\z test 220929 b-2-1.xml*!*",v.Local.sFiles)
+'	f.Intrinsic.String.Concat(v.Local.sFiles,"G:\APPS\Global\Striker CSV Files\export test\z test 220929 b-2-2.xml",v.Local.sFiles)
+	
+	f.Intrinsic.String.Split(v.Local.sFiles,"*!*",v.Local.sFiles)
+	f.Intrinsic.Control.For(v.Local.i,0,v.Local.sFiles.UBound,1)
+		f.Intrinsic.File.File2String(v.Local.sFiles(v.Local.i),v.Local.sXML)
+		f.Intrinsic.String.Build("Doc{0}",v.Local.i,v.Local.sDoc)
+		
+		f.Intrinsic.File.GetPathFromFQN(v.Local.sFiles(v.Local.i),V.Local.sNestPath)
+		
+		f.Global.XML.LoadDocument(v.Local.sDoc,v.Local.sFiles(v.Local.i),False,False,False,False)
+		f.Global.XML.Query(v.Local.sDoc,"set1","//*")
+		f.Intrinsic.Control.DoUntil(v.Local.bEof)
+			
+			f.Global.XML.ReadNodeSetValue(v.Local.sDoc,"set1","nodeName",v.Local.sRet)
+			
+			f.Intrinsic.Control.If(v.Local.sRet.Trim,=,"Layout")
+				v.Local.sNestID.Set("")
+				v.Local.sNestFile.Set("")
+				v.Local.sNum.Set("")
+				v.Local.sNumsetup.Set("")
+				v.Local.sWorkOrder.Set("")
+				v.Local.sMaterialCode.Set("")
+				v.Local.fWOQty.Set(0)
+				v.Local.fMatUsage.Set(0)
+					
+				'Nest ID
+				f.Global.XML.Next(v.Local.sDoc,"set1",v.Local.bEof)
+				f.Global.XML.ReadNodeSetValue(v.Local.sDoc,"set1","text",v.Local.sNestID)
+				f.Intrinsic.String.Concat(v.Local.sNestPath,"\",v.Local.sNestID,"-NC.pdf",V.Local.sNestFile)
+				f.ODBC.Connection!con.ExecuteAndReturn("SELECT LAST_PO_NUM FROM LAST_PO WHERE ASS_SYS='SCH' AND ASS_SUB_SYS='OPT'",V.Local.sNum)
+				f.Intrinsic.String.Left(v.Local.sNum,6,v.Local.sNum)
+				
+				f.Intrinsic.Math.Add(v.Local.sNum.Long,1,v.Local.iNum)
+				v.Local.sNumsetup.Set(v.Local.iNum)
+				
+				f.Intrinsic.Math.Add(v.Local.iNum,1,v.Local.iNum)
+				v.Local.sNum.Set(v.Local.iNum)
+				
+				f.Intrinsic.String.Format(v.Local.sNumsetup,"000000",v.Local.sNumsetup)
+				f.Intrinsic.String.Format(v.Local.sNum,"000000",v.Local.sNum)
+				
+				f.Intrinsic.String.Build("UPDATE LAST_PO SET LAST_PO_NUM='{0}' + substring(Last_PO_Num,7,1) where Ass_sys='SCH' and ASS_SUB_SYS='OPT'",v.Local.sNum,v.Local.sSql)
+				f.ODBC.Connection!con.Execute(v.Local.sSql)
+				
+			f.Intrinsic.Control.ElseIf(v.Local.sRet.Trim,=,"Subjob")
+				v.Local.sNestID.Set("")
+				v.Local.sNestFile.Set("")
+				v.Local.sNum.Set("")
+				v.Local.sNumsetup.Set("")
+				v.Local.sWorkOrder.Set("")
+				v.Local.sMaterialCode.Set("")
+				v.Local.fWOQty.Set(0)
+				v.Local.fMatUsage.Set(0)
+				
+			f.Intrinsic.Control.ElseIf(v.Local.sRet.Trim,=,"BlankName")
+				'Material Code
+				f.Global.XML.ReadNodeSetValue(v.Local.sDoc,"set1","text",v.Local.sMaterialCode)
+				
+			f.Intrinsic.Control.ElseIf(v.Local.sRet.Trim,=,"BlankQty")
+				'Material Qty
+				f.Global.XML.ReadNodeSetValue(v.Local.sDoc,"set1","text",v.Local.fBlankQty)
+				
+			f.Intrinsic.Control.ElseIf(v.Local.sRet.Trim,=,"MaterialUtilization")
+				'Material Usage
+				f.Global.XML.ReadNodeSetValue(v.Local.sDoc,"set1","text",v.Local.fMatUsage)
+				
+			f.Intrinsic.Control.ElseIf(v.Local.sRet.Trim,=,"Qty")
+				'Work Order Qty
+				f.Global.XML.ReadNodeSetValue(v.Local.sDoc,"set1","text",v.Local.fWOQty)
+				
+			f.Intrinsic.Control.ElseIf(v.Local.sRet.Trim,=,"WorkOrder")
+			
+				F.Intrinsic.Control.If(v.Local.sNestID.Trim,<>,"")
+					'Work Order 
+					f.Global.XML.ReadNodeSetValue(v.Local.sDoc,"set1","text",v.Local.sWorkOrder)
+					f.Data.Datatable.AddRow("dtNest","FlexScheduleSetup",v.Local.sNumsetup,"FlexSchedule",v.Local.sNum,"NestID",v.Local.sNestID,"WorkOrder",v.Local.sWorkOrder,"MaterialCode",v.Local.sMaterialCode.UCase,"WorkOrderQty",v.Local.fWOQty,"MaterialUsage",v.Local.fMatUsage,"QtyToOrder",v.Local.fBlankqty,"NestFile",v.Local.sNestFile)
+				F.Intrinsic.Control.EndIf
+			f.Intrinsic.Control.EndIf
+			
+			
+			f.Global.XML.Next(v.Local.sDoc,"set1",v.Local.bEof)
+		f.Intrinsic.Control.Loop
+		V.Local.bEof.Set(FALSE)
+	f.Intrinsic.Control.Next(v.Local.i)
+	
+	
+	v.Local.sJob.Declare
+	v.Local.sSfx.Declare
+	v.Local.sLSq.Declare
+	v.local.sLWC.Declare
+	V.Local.sLSt.Declare
+	v.Local.sPrt.Declare
+	v.Local.sMSq.Declare
+	v.Local.sLWC.Set("TP01")
+	f.Intrinsic.Control.For(v.Local.i,0,v.DataTable.dtNest.RowCount--,1)
+		F.Intrinsic.String.Build("SELECT THICKNESS, DESCRIPTION, PART, AMT_ALT_COST, DESCRIPTION_2, DESCRIPTION_3, LENGTH, WIDTH, TEXT_INFO1, TEXT_INFO2, CONCAT(ROUND(LENGTH,0), CONCAT('X',CONCAT(ROUND(WIDTH,0),CONCAT('-',CONCAT(LEFT(THICKNESS,5),CONCAT('-',TEXT_INFO2)))))) AS 'CREATEDPART' FROM V_INVENTORY_ALL WHERE PART='{0}'",v.DataTable.dtNest(v.Local.i).MaterialCode!fieldvaltrim,v.Local.sSql)
+		f.ODBC.Connection!con.ExecuteAndReturn(v.Local.sSql,v.Local.sRet)
+		F.Intrinsic.Control.If(v.Local.sRet.Trim,=,"")
+			f.Intrinsic.String.Concat("Error, material code not found!  Record rejected. Code ", v.DataTable.dtNest(v.Local.i).MaterialCode!fieldvaltrim, " needs to have matching length, width, thickness, and material type (text info 2).",v.Local.sErrorDescription)
+			f.Intrinsic.string.Concat(v.Local.sAllErrors,v.Local.sErrorDescription,v.Ambient.NewLine,v.Local.sAllErrors)
+		f.Intrinsic.Control.Else
+			f.Intrinsic.String.Split(v.Local.sRet,"*!*",v.Local.sRet)
+			f.Intrinsic.String.Build("INSERT INTO GAB_6737_STRIKER (NESTID, MATERIALTHICKNESS, MATERIALDESCRIPTION, GSSMATERIALCODE, MATERIALCOST, WORKORDER, MATERIALCODE, MATERIALUSAGE, WORKORDERQTY, QTYTOORDER, NESTFILE, FlexSchedule, FlexScheduleSetup) VALUES ('{0}',{1},'{2}','{3}',{4},'{5}','{6}',{7},{8},{9},'{10}','{11}','{12}')",v.DataTable.dtNest(v.Local.i).NestID!fieldvaltrim,V.Local.sRet(0),V.Local.sRet(1),V.Local.sRet(2),V.Local.sRet(3),v.DataTable.dtNest(v.Local.i).WorkOrder!fieldvaltrim,v.DataTable.dtNest(v.Local.i).MaterialCode!fieldvaltrim,v.DataTable.dtNest(v.Local.i).MaterialUsage!fieldval,v.DataTable.dtNest(v.Local.i).WorkOrderQty!fieldval,v.DataTable.dtNest(v.Local.i).QtyToOrder!fieldval,v.DataTable.dtNest(v.Local.i).NestFile!fieldvaltrim,v.DataTable.dtNest(v.Local.i).FlexSchedule!fieldvaltrim,v.DataTable.dtNest(v.Local.i).FlexScheduleSetup!fieldvaltrim,v.Local.sSql)
+			f.ODBC.Connection!con.Execute(v.Local.sSql)
+			f.Intrinsic.String.Split(v.DataTable.dtNest(v.Local.i).WorkOrder!fieldvaltrim,"-",v.Local.sRet)
+			v.Local.sJob.Set(v.Local.sRet(0))
+			v.Local.sSfx.Set(v.Local.sRet(1))
+			v.Local.sLSq.Set(v.Local.sRet(2))
+			f.Intrinsic.String.Build("SELECT SEQ FROM JOB_OPERATIONS WHERE JOB='{0}' AND SUFFIX='{1}' AND CODE_SORT_OPER='SHEETMETAL'",v.Local.sJob,v.Local.sSfx,v.Local.sSql)
+			f.ODBC.Connection!con.ExecuteAndReturn(v.Local.sSql,v.Local.sMSq)
+			f.Intrinsic.String.Build("SELECT PART FROM JOB_HEADER WHERE JOB='{0}' AND SUFFIX='{1}'",v.Local.sJob,v.Local.sSfx,v.Local.sSql)
+			f.ODBC.Connection!con.ExecuteAndReturn(v.Local.sSql,v.Local.sPrt)
+			f.Intrinsic.String.Build("SELECT SEQ FROM JOB_OPERATIONS WHERE JOB='{0}' AND SUFFIX='{1}' AND PART='TP01' AND FLAG_SET_UP='Y'",v.Local.sJob,v.Local.sSfx,v.Local.sSql)
+			f.ODBC.Connection!con.ExecuteAndReturn(v.Local.sSql,v.Local.sLSt)
+			f.Intrinsic.Control.If(v.Local.sLSt.Trim,=,"")
+				v.Local.sLSt.Set(v.Local.sLSq)
+			f.Intrinsic.Control.EndIf
+			
+			
+			f.Data.Datatable.AddRow("6000","SchedNumber",v.DataTable.dtNest(v.Local.i).FlexScheduleSetup!fieldvaltrim,"SchedSuffix","000","Schedincrement",v.Local.i,"MatWO",v.Local.sJob,"Matsuff",v.Local.sSfx,"MatSeq",v.Local.sMSq,"LabWO",v.Local.sJob,"LabSuff",v.Local.sSfx,"LabSeq",v.Local.sLSt,"LabWorkCenter",v.Local.sLWC,"LabWOPart",v.Local.sPrt,"SchedFromDueDate","000000","SchedToDueDate","999999")
+			f.Data.Datatable.AddRow("6000","SchedNumber",v.DataTable.dtNest(v.Local.i).FlexSchedule!fieldvaltrim,"SchedSuffix","000","Schedincrement",v.Local.i,"MatWO",v.Local.sJob,"Matsuff",v.Local.sSfx,"MatSeq",v.Local.sMSq,"LabWO",v.Local.sJob,"LabSuff",v.Local.sSfx,"LabSeq",v.Local.sLSQ,"LabWorkCenter",v.Local.sLWC,"LabWOPart",v.Local.sPrt,"SchedFromDueDate","000000","SchedToDueDate","999999")
+		F.Intrinsic.Control.EndIf
+	f.Intrinsic.Control.Next(v.Local.i)
+	
+	f.Intrinsic.Control.CallSub(6000Sync)
+	
+	f.Intrinsic.Control.If(v.Local.sAllErrors.Trim,=,"")
+		f.Intrinsic.UI.Msgbox("Upload Complete")
+	f.Intrinsic.Control.Else
+		f.Intrinsic.UI.Msgbox(v.Local.sAllErrors)
+	f.Intrinsic.Control.EndIf
+	
+	f.Intrinsic.Control.CallSub(frmImport_UnLoad)
+	
+f.Intrinsic.Control.Catch
+	f.Intrinsic.UI.Msgbox(v.Ambient.ErrorDescription)
+f.Intrinsic.Control.EndTry
+Program.Sub.trvDragDropFiles_DragDropFile.End
+
+Program.Sub.Comments.Start
+${$5$}$3.0.0.0$}$1
+${$6$}$globalshop$}$20220922164634695$}$N6KCk/5vhz5oyVlDG2B4g8eDioysVRnIfCc0oO/RIboorX1cv4/MRaeNlbmHSESKbf8QP2gOtWZQcDTGbI78Rw==
+Program.Sub.Comments.End
