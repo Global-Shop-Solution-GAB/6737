@@ -1,0 +1,886 @@
+﻿Program.Sub.ScreenSU.Start
+Gui.frmNest..Create(DashForm)
+Gui.frmNest..Caption("Nesting Dashboard")
+Gui.frmNest..Size(1024,720)
+Gui.frmNest..MinX(0)
+Gui.frmNest..MinY(0)
+Gui.frmNest..Position(0,0)
+Gui.frmNest..AlwaysOnTop(False)
+Gui.frmNest..FontName("Tahoma")
+Gui.frmNest..FontSize(8.25)
+Gui.frmNest..ControlBox(True)
+Gui.frmNest..MaxButton(True)
+Gui.frmNest..MinButton(True)
+Gui.frmNest..MousePointer(0)
+Gui.frmNest..Moveable(True)
+Gui.frmNest..Sizeable(True)
+Gui.frmNest..ShowInTaskBar(True)
+Gui.frmNest..TitleBar(True)
+Gui.frmNest..Event(UserButtonClicked,frmNest_UserButtonClicked)
+Gui.frmNest..Event(RefreshClick,frmNest_RefreshClick)
+Gui.frmNest..Event(UnLoad,frmNest_UnLoad)
+Gui.frmNest..BarRefreshButton(True)
+Gui.frmNest.txtBlah.Create(TextBox,"",True,100,20,-1,513,36,True,0,"Tahoma",8.25,,1)
+Gui.frmNest.gsgcNestDashboard.Create(GsGridControl)
+Gui.frmNest.gsgcNestDashboard.Enabled(True)
+Gui.frmNest.gsgcNestDashboard.Visible(True)
+Gui.frmNest.gsgcNestDashboard.Zorder(0)
+Gui.frmNest.gsgcNestDashboard.Size(1024,690)
+Gui.frmNest.gsgcNestDashboard.Position(0,0)
+Gui.frmNest.gsgcNestDashboard.Dock(5)
+Gui.frmNest.gsgcNestDashboard.Event(RowCellClick,gsgcNestDashboard_RowCellClick)
+Gui.frmPO..Create(BaseForm)
+Gui.frmPO..Caption("Create Purchase Order")
+Gui.frmPO..Size(646,279)
+Gui.frmPO..MinX(0)
+Gui.frmPO..MinY(0)
+Gui.frmPO..Position(0,0)
+Gui.frmPO..AlwaysOnTop(False)
+Gui.frmPO..FontName("Tahoma")
+Gui.frmPO..FontSize(8.25)
+Gui.frmPO..ControlBox(True)
+Gui.frmPO..MaxButton(True)
+Gui.frmPO..MinButton(True)
+Gui.frmPO..MousePointer(0)
+Gui.frmPO..Moveable(True)
+Gui.frmPO..Sizeable(True)
+Gui.frmPO..ShowInTaskBar(True)
+Gui.frmPO..TitleBar(True)
+Gui.frmPO..Event(UnLoad,frmPO_UnLoad)
+Gui.frmPO.txt1.Create(TextBox,"",True,100,20,0,10,25,True,0,"Tahoma",8.25,,1)
+Gui.frmPO.cmdBrowseVendor.Create(Button)
+Gui.frmPO.cmdBrowseVendor.Enabled(True)
+Gui.frmPO.cmdBrowseVendor.Visible(True)
+Gui.frmPO.cmdBrowseVendor.Zorder(0)
+Gui.frmPO.cmdBrowseVendor.Size(38,23)
+Gui.frmPO.cmdBrowseVendor.Position(119,24)
+Gui.frmPO.cmdBrowseVendor.Caption("^")
+Gui.frmPO.cmdBrowseVendor.FontName("Tahoma")
+Gui.frmPO.cmdBrowseVendor.FontSize(8.25)
+Gui.frmPO.cmdBrowseVendor.Event(Click,cmdBrowseVendor_Click)
+Gui.frmPO.cmdCreatePO.Create(Button)
+Gui.frmPO.cmdCreatePO.Enabled(True)
+Gui.frmPO.cmdCreatePO.Visible(True)
+Gui.frmPO.cmdCreatePO.Zorder(0)
+Gui.frmPO.cmdCreatePO.Size(75,23)
+Gui.frmPO.cmdCreatePO.Position(169,24)
+Gui.frmPO.cmdCreatePO.Caption("Create PO")
+Gui.frmPO.cmdCreatePO.FontName("Tahoma")
+Gui.frmPO.cmdCreatePO.FontSize(8.25)
+Gui.frmPO.cmdCreatePO.Event(Click,cmdCreatePO_Click)
+Gui.frmPO.lbl1.Create(Label,"Vendor #",True,45,13,0,12,9,True,0,"Tahoma",8.25,,0,0)
+Gui.frmPO.lbl1.BorderStyle(0)
+Gui.frmPO.gsgcPODetail.Create(GsGridControl)
+Gui.frmPO.gsgcPODetail.Enabled(True)
+Gui.frmPO.gsgcPODetail.Visible(True)
+Gui.frmPO.gsgcPODetail.Zorder(0)
+Gui.frmPO.gsgcPODetail.Size(628,193)
+Gui.frmPO.gsgcPODetail.Position(12,51)
+Gui.frmIssue..Create(BaseForm)
+Gui.frmIssue..Caption("Issue Time / Material")
+Gui.frmIssue..Size(1024,720)
+Gui.frmIssue..MinX(0)
+Gui.frmIssue..MinY(0)
+Gui.frmIssue..Position(0,0)
+Gui.frmIssue..AlwaysOnTop(False)
+Gui.frmIssue..FontName("Tahoma")
+Gui.frmIssue..FontSize(8.25)
+Gui.frmIssue..ControlBox(True)
+Gui.frmIssue..MaxButton(True)
+Gui.frmIssue..MinButton(True)
+Gui.frmIssue..MousePointer(0)
+Gui.frmIssue..Moveable(True)
+Gui.frmIssue..Sizeable(True)
+Gui.frmIssue..ShowInTaskBar(True)
+Gui.frmIssue..TitleBar(True)
+Gui.frmIssue..Event(UnLoad,frmIssue_UnLoad)
+Gui.frmIssue.gsgcIssue.Create(GsGridControl)
+Gui.frmIssue.gsgcIssue.Enabled(True)
+Gui.frmIssue.gsgcIssue.Visible(True)
+Gui.frmIssue.gsgcIssue.Zorder(0)
+Gui.frmIssue.gsgcIssue.Size(1012,612)
+Gui.frmIssue.gsgcIssue.Position(7,74)
+Gui.frmIssue.txtSheets.Create(TextBox,"",True,100,20,0,12,45,True,0,"Tahoma",8.25,,1)
+Gui.frmIssue.txtSheets.NumericOnly(1)
+Gui.frmIssue.txtTime.Create(TextBox,"",True,100,20,0,129,46,True,0,"Tahoma",8.25,,1)
+Gui.frmIssue.txtTime.NumericOnly(1)
+Gui.frmIssue.lbl1.Create(Label,"Sheets:",True,37,13,0,13,27,True,0,"Tahoma",8.25,,0,0)
+Gui.frmIssue.lbl1.BorderStyle(0)
+Gui.frmIssue.lbl2.Create(Label,"Time:",True,26,13,0,132,27,True,0,"Tahoma",8.25,,0,0)
+Gui.frmIssue.lbl2.BorderStyle(0)
+Gui.frmIssue.cmdProcess.Create(Button)
+Gui.frmIssue.cmdProcess.Enabled(True)
+Gui.frmIssue.cmdProcess.Visible(True)
+Gui.frmIssue.cmdProcess.Zorder(0)
+Gui.frmIssue.cmdProcess.Size(75,23)
+Gui.frmIssue.cmdProcess.Position(341,44)
+Gui.frmIssue.cmdProcess.Caption("Process")
+Gui.frmIssue.cmdProcess.FontName("Tahoma")
+Gui.frmIssue.cmdProcess.FontSize(8.25)
+Gui.frmIssue.cmdProcess.Event(Click,cmdProcess_Click)
+Gui.frmIssue.txtEmployee.Create(TextBox,"00163",True,100,20,0,237,45,True,0,"Tahoma",8.25,,1)
+Gui.frmIssue.txtEmployee.DefaultValue("00163")
+Gui.frmIssue.lbl3.Create(Label,"Employee ID",True,60,13,0,240,27,True,0,"Tahoma",8.25,,0,0)
+Gui.frmIssue.lbl3.BorderStyle(0)
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+Program.External.Include.Library("175100.lib")
+Program.External.Include.Library("JB0455.lib")
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+f.Intrinsic.Control.Try
+	Function.Intrinsic.UI.UsePixels ' Allows you to use Pixels instead of Twips throughout
+	F.Intrinsic.UI.SetBrowserHotTypeAhead(1)
+	f.ODBC.Connection!con.opencompanyconnection(90)
+	'gui.frmNest..BarAddButton("CreatePO","Create PO")
+	gui.frmNest..BarAddButton("IssueTimeMaterial","Issue Time/Material")
+	gui.frmNest..BarAddButton("DeleteNest","Delete Nest")
+	f.Intrinsic.Control.CallSub(loadData)
+	f.Intrinsic.Control.CallSub(setProperties)
+	gui.frmNest..Show
+f.Intrinsic.Control.Catch
+
+f.Intrinsic.Control.EndTry
+Program.Sub.Main.End
+
+Program.Sub.LoadData.Start
+f.Intrinsic.Control.Try
+	v.Local.sSql.Declare
+	v.Local.sRet.Declare
+	
+	f.Data.Datatable.CreateFromSQL("dtTimeMat","con","SELECT GAB_6737_STRIKER.*, LEFT(GAB_6737_STRIKER.Workorder,6) as 'JOB', right(left(gab_6737_STRIKER.WorkOrder,10),3) as 'suffix', ' ' as part  FROM GAB_6737_STRIKER",true)
+	f.Data.Datatable.AddColumn("dtTimeMat","BadPiece",float,0)
+	f.Data.Datatable.RemoveColumn("dtTimeMat","CutTime")
+	f.Data.Datatable.RemoveColumn("dtTimeMat","Workcentre")
+	f.Data.Datatable.RemoveColumn("dtTimeMat","Notes")
+	f.Data.Datatable.RemoveColumn("dtTimeMat","PurchaseOrder")
+	f.Data.Datatable.RemoveColumn("dtTimeMat","PurchaseOrderLine")
+	f.Data.Datatable.RemoveColumn("dtTimeMat","QtyToOrder")
+	f.Data.Datatable.DeleteRow("dtTimeMat")
+	gui.frmIssue.gsgcIssue.DataSource("dtTimeMat")
+	
+	f.Data.Datatable.Create("dtPO",true)
+	f.Data.Datatable.AddColumn("dtPO","NestID","String")
+	f.Data.Datatable.AddColumn("dtPO","MaterialCode","String")
+	f.Data.Datatable.AddColumn("dtPO","GSSMaterialCode","String")
+	f.Data.Datatable.AddColumn("dtPO","MaterialDescription","String")
+	f.Data.Datatable.AddColumn("dtPO","MaterialUsage","Float")
+	f.Data.Datatable.AddColumn("dtPO","QtyToOrder","Float")
+	f.Data.Datatable.AddColumn("dtPO","MaterialCost","Float")
+	f.Data.Datatable.CreateFromSQL("dtNest","con","SELECT Distinct CAST(0 as bit) as 'SelectNest', NestID, Nestfile, MaterialCode, MaterialThickness, MaterialDescription, MaterialUsage, QtyToOrder, PurchaseOrder, PurchaseOrderLine, GSSMaterialCode, Vendor, FlexSchedule, FlexScheduleSetup, MaterialCost FROM GAB_6737_STRIKER",true)
+	gui.frmNest.gsgcNestDashboard.DataSource("dtNest")
+	
+				
+	gui.frmPO.gsgcPODetail.DataSource("dtPO")
+f.Intrinsic.Control.Catch
+	f.Intrinsic.UI.Msgbox(v.Ambient.ErrorDescription)
+	f.Intrinsic.Control.CallSub(frmNest_UnLoad)
+f.Intrinsic.Control.EndTry
+Program.Sub.LoadData.End
+
+Program.Sub.setProperties.Start
+f.Intrinsic.Control.Try
+
+	gui.frmIssue.gsgcIssue.AddGridviewFromDatatable("gvTimeMat","dtTimeMat")
+	Gui.frmIssue.gsgcIssue.SetGridViewProperty("gvTimeMat","OptionsViewShowGroupPanel",True)
+	
+	gui.frmPO.gsgcPODetail.AddGridviewFromDatatable("gvPO","dtPO")
+	
+	gui.frmNest.gsgcNestDashboard.AddGridviewFromDatatable("gvNest","dtNest")
+	Gui.frmNest.gsgcNestDashboard.SetGridViewProperty("gvNest","OptionsViewShowGroupPanel",True)
+	Gui.frmNest.gsgcNestDashboard.SetGridViewProperty("gvNest","MultiSelect",True)
+	Gui.frmNest.gsgcNestDashboard.SetGridViewProperty("gvNest","MultiSelectMode",2)
+	Gui.frmNest.gsgcNestDashboard.SetGridViewProperty("gvNest","CheckboxSelectorField","SelectNest")
+	
+	
+	
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","NestID","ReadOnly","True")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","MaterialCode","ReadOnly","True")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","MaterialThickness","ReadOnly","True")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","MaterialDescription","ReadOnly","True")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","MaterialUsage","ReadOnly","True")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","PurchaseOrder","ReadOnly","True")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","PurchaseOrderLine","ReadOnly","True")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","GSSMaterialCode","ReadOnly","True")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","Vendor","ReadOnly","True")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","FlexSchedule","ReadOnly","True")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","FlexScheduleSetup","ReadOnly","True")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","NestFile","ReadOnly","True")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","QtyToOrder","ReadOnly","True")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","MaterialCost","ReadOnly","True")
+	
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","NestID","AllowEdit","False")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","MaterialCode","AllowEdit","False")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","MaterialThickness","AllowEdit","False")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","MaterialDescription","AllowEdit","False")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","MaterialUsage","AllowEdit","False")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","PurchaseOrder","AllowEdit","False")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","PurchaseOrderLine","AllowEdit","False")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","GSSMaterialCode","AllowEdit","False")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","Vendor","AllowEdit","False")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","FlexSchedule","AllowEdit","False")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","FlexScheduleSetup","AllowEdit","False")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","NestFile","AllowEdit","False")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","QtyToOrder","AllowEdit","False")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","MaterialCost","AllowEdit","False")
+	
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","NestID","HeaderFontBold","True")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","MaterialCode","HeaderFontBold","True")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","MaterialThickness","HeaderFontBold","True")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","MaterialDescription","HeaderFontBold","True")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","MaterialUsage","HeaderFontBold","True")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","PurchaseOrder","HeaderFontBold","True")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","PurchaseOrderLine","HeaderFontBold","True")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","GSSMaterialCode","HeaderFontBold","True")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","Vendor","HeaderFontBold","True")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","FlexSchedule","HeaderFontBold","True")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","FlexScheduleSetup","HeaderFontBold","True")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","NestFile","HeaderFontBold","True")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","QtyToOrder","HeaderFontBold","True")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","MaterialCost","HeaderFontBold","True")
+	
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","NestID","HeaderHAlignment","Center")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","MaterialCode","HeaderHAlignment","Center")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","MaterialThickness","HeaderHAlignment","Center")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","MaterialDescription","HeaderHAlignment","Center")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","MaterialUsage","HeaderHAlignment","Center")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","PurchaseOrder","HeaderHAlignment","Center")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","PurchaseOrderLine","HeaderHAlignment","Center")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","GSSMaterialCode","HeaderHAlignment","Center")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","Vendor","HeaderHAlignment","Center")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","FlexSchedule","HeaderHAlignment","Center")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","FlexScheduleSetup","HeaderHAlignment","Center")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","NestFile","HeaderHAlignment","Center")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","QtyToOrder","HeaderHAlignment","Center")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","MaterialCost","HeaderHAlignment","Center")
+	
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","NestID","Caption","Nest ID")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","MaterialCode","Caption","Material Code")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","MaterialThickness","Caption","Material Thickness")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","MaterialDescription","Caption","Material Description")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","MaterialUsage","Caption","Material Usage")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","PurchaseOrder","Caption","Purchase Order")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","PurchaseOrderLine","Caption","Purchase Order Line")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","GSSMaterialCode","Caption","GSS Material Code")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","Vendor","Caption","Vendor")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","FlexSchedule","Caption","Flex Schedule Run")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","FlexScheduleSetup","Caption","Flex Schedule Setup")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","NestFile","Caption","Nest File")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","QtyToOrder","Caption","Order Qty")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","MaterialCost","Caption","Est. Material Cost")
+	
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","MaterialCost","Visible","False")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","Vendor","Visible","False")
+	gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","SelectNest","Visible","False")
+	
+	Gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","PurchaseOrder","CellForeColor","Blue")
+	Gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","PurchaseOrderLine","CellForeColor","Blue")
+	Gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","NestFile","CellForeColor","Blue")
+	Gui.frmNest.gsgcNestDashboard.SetColumnProperty("gvNest","GSSMaterialCode","CellForeColor","Blue")
+
+
+	''PO
+	gui.frmPO.gsgcPODetail.SetColumnProperty("gvPO","NestID","HeaderHAlignment","Center")
+	gui.frmPO.gsgcPODetail.SetColumnProperty("gvPO","MaterialCode","HeaderHAlignment","Center")
+	gui.frmPO.gsgcPODetail.SetColumnProperty("gvPO","MaterialDescription","HeaderHAlignment","Center")
+	gui.frmPO.gsgcPODetail.SetColumnProperty("gvPO","MaterialUsage","HeaderHAlignment","Center")
+	gui.frmPO.gsgcPODetail.SetColumnProperty("gvPO","MaterialCost","HeaderHAlignment","Center")
+	gui.frmPO.gsgcPODetail.SetColumnProperty("gvPO","QtyToOrder","HeaderHAlignment","Center")
+	
+	gui.frmPO.gsgcPODetail.SetColumnProperty("gvPO","NestID","AllowEdit","False")
+	gui.frmPO.gsgcPODetail.SetColumnProperty("gvPO","MaterialCode","AllowEdit","False")
+	gui.frmPO.gsgcPODetail.SetColumnProperty("gvPO","MaterialDescription","AllowEdit","False")
+	gui.frmPO.gsgcPODetail.SetColumnProperty("gvPO","MaterialUsage","AllowEdit","False")
+	gui.frmPO.gsgcPODetail.SetColumnProperty("gvPO","MaterialCost","AllowEdit","True")
+	gui.frmPO.gsgcPODetail.SetColumnProperty("gvPO","QtyToOrder","AllowEdit","True")
+	
+	gui.frmPO.gsgcPODetail.SetColumnProperty("gvPO","NestID","ReadOnly","True")
+	gui.frmPO.gsgcPODetail.SetColumnProperty("gvPO","MaterialCode","ReadOnly","True")
+	gui.frmPO.gsgcPODetail.SetColumnProperty("gvPO","MaterialDescription","ReadOnly","True")
+	gui.frmPO.gsgcPODetail.SetColumnProperty("gvPO","MaterialUsage","ReadOnly","True")
+	gui.frmPO.gsgcPODetail.SetColumnProperty("gvPO","MaterialCost","ReadOnly","False")
+	gui.frmPO.gsgcPODetail.SetColumnProperty("gvPO","QtyToOrder","ReadOnly","False")
+	
+	gui.frmPO.gsgcPODetail.SetColumnProperty("gvPO","NestID","HeaderFontBold","True")
+	gui.frmPO.gsgcPODetail.SetColumnProperty("gvPO","MaterialCode","HeaderFontBold","True")
+	gui.frmPO.gsgcPODetail.SetColumnProperty("gvPO","MaterialDescription","HeaderFontBold","True")
+	gui.frmPO.gsgcPODetail.SetColumnProperty("gvPO","MaterialUsage","HeaderFontBold","True")
+	gui.frmPO.gsgcPODetail.SetColumnProperty("gvPO","MaterialCost","HeaderFontBold","True")
+	gui.frmPO.gsgcPODetail.SetColumnProperty("gvPO","QtyToOrder","HeaderFontBold","True")
+	
+	gui.frmPO.gsgcPODetail.SetColumnProperty("gvPO","MaterialCost","CellBackColor","LightYellow")
+	Gui.frmPO.gsgcPODetail.SetColumnProperty("gvPO","MaterialCost","DisplayCustomNumeric","$###,###,##0.00")
+	Gui.frmPO.gsgcPODetail.SetColumnProperty("gvPO","QtyToOrder","DisplayCustomNumeric","###,###,##0.00")
+	
+	
+	''Time Material
+	
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","NestID","ReadOnly","True")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","MaterialCode","ReadOnly","True")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","MaterialThickness","ReadOnly","True")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","MaterialDescription","ReadOnly","True")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","MaterialUsage","ReadOnly","True")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","GSSMaterialCode","ReadOnly","True")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","Vendor","ReadOnly","True")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","FlexSchedule","ReadOnly","True")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","FlexScheduleSetup","ReadOnly","True")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","NestFile","ReadOnly","True")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","MaterialCost","ReadOnly","True")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","WorkOrderQTy","ReadOnly","False")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","BadPiece","ReadOnly","False")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","WorkOrder","ReadOnly","False")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","Part","ReadOnly","False")
+	
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","NestID","AllowEdit","False")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","MaterialCode","AllowEdit","False")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","MaterialThickness","AllowEdit","False")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","MaterialDescription","AllowEdit","False")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","MaterialUsage","AllowEdit","False")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","GSSMaterialCode","AllowEdit","False")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","Vendor","AllowEdit","False")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","FlexSchedule","AllowEdit","False")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","FlexScheduleSetup","AllowEdit","False")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","NestFile","AllowEdit","False")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","MaterialCost","AllowEdit","False")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","WorkOrderQTy","AllowEdit","True")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","BadPiece","AllowEdit","True")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","WorkOrder","AllowEdit","True")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","Part","AllowEdit","True")
+	
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","NestID","HeaderFontBold","True")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","MaterialCode","HeaderFontBold","True")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","MaterialThickness","HeaderFontBold","True")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","MaterialDescription","HeaderFontBold","True")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","MaterialUsage","HeaderFontBold","True")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","GSSMaterialCode","HeaderFontBold","True")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","Vendor","HeaderFontBold","True")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","FlexSchedule","HeaderFontBold","True")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","FlexScheduleSetup","HeaderFontBold","True")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","NestFile","HeaderFontBold","True")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","MaterialCost","HeaderFontBold","True")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","WorkOrderQTy","HeaderFontBold","True")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","BadPiece","HeaderFontBold","True")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","WorkOrder","HeaderFontBold","True")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","Part","HeaderFontBold","True")
+	
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","NestID","HeaderHAlignment","Center")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","MaterialCode","HeaderHAlignment","Center")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","MaterialThickness","HeaderHAlignment","Center")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","MaterialDescription","HeaderHAlignment","Center")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","MaterialUsage","HeaderHAlignment","Center")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","GSSMaterialCode","HeaderHAlignment","Center")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","Vendor","HeaderHAlignment","Center")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","FlexSchedule","HeaderHAlignment","Center")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","FlexScheduleSetup","HeaderHAlignment","Center")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","NestFile","HeaderHAlignment","Center")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","MaterialCost","HeaderHAlignment","Center")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","WorkOrderQTy","HeaderHAlignment","Center")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","BadPiece","HeaderHAlignment","Center")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","WorkOrder","HeaderHAlignment","Center")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","Part","HeaderHAlignment","Center")
+	
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","NestID","Caption","Nest ID")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","MaterialCode","Caption","Material Code")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","MaterialThickness","Caption","Material Thickness")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","MaterialDescription","Caption","Material Description")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","MaterialUsage","Caption","Material Usage")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","GSSMaterialCode","Caption","GSS Material Code")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","Vendor","Caption","Vendor")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","FlexSchedule","Caption","Flex Schedule Run")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","FlexScheduleSetup","Caption","Flex Schedule Setup")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","NestFile","Caption","Nest File")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","MaterialCost","Caption","Est. Material Cost")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","WorkOrderQTy","Caption","GoodPiece")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","BadPiece","Caption","Bad Piece")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","WorkOrder","Caption","Work Order")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","Part","Caption","Part")
+	
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","MaterialCost","Visible","False")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","Vendor","Visible","False")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","MaterialUsage","Visible","False")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","FlexScheduleSetup","Visible","False")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","NestFile","Visible","False")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","MaterialCost","Visible","False")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","GSSMaterialCode","Visible","False")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","JOB","Visible","False")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","Suffix","Visible","False")
+	
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","NestID","VisibleIndex","1")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","FlexSchedule","VisibleIndex","2")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","Part","VisibleIndex","3")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","WorkOrder","VisibleIndex","4")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","MaterialCode","VisibleIndex","5")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","MaterialDescription","VisibleIndex","6")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","WorkOrderQTy","VisibleIndex","7")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","BadPiece","VisibleIndex","8")
+	
+	Gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","NestFile","CellForeColor","Blue")
+	Gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","GSSMaterialCode","CellForeColor","Blue")
+	
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","BadPiece","CellBackColor","LightYellow")
+	gui.frmIssue.gsgcIssue.SetColumnProperty("gvTimeMat","WorkOrderQTy","CellBackColor","LightYellow")
+	
+	gui.frmIssue.gsgcIssue.Anchor(15)
+	
+
+'	Gui.FrmMaster.[V.ARGS.Grid].SetColumnProperty(v.args.gridview,"NAME_CUSTOMER","MinWidth","180")
+'	
+'	Gui.FrmMaster.[V.ARGS.Grid].SetColumnProperty(v.args.gridview,"DISPLAY_PART1","Caption","Display Part")
+'	
+'	Gui.FrmMaster.[V.ARGS.Grid].SetColumnProperty(v.args.gridview,"SCHEDULED_DUE_DATE","CellHAlignment","Center")
+'	
+'	Gui.FrmMaster.[V.ARGS.Grid].SetColumnProperty(v.args.gridview,"SALES_ORDER_LINE","CellForeColor","Blue")
+'	Gui.FrmMaster.[V.ARGS.Grid].SetColumnProperty(v.args.gridview,"AMT_OVERHEAD","DisplayCustomNumeric","$###,###,##0.00")
+'	Gui.FrmMaster.[V.ARGS.Grid].SetColumnProperty(v.args.gridview,"DATE_ORIG_DUE","DisplayCustomDatetime","d")
+	
+f.Intrinsic.Control.Catch
+	f.Intrinsic.UI.Msgbox(v.Ambient.ErrorDescription)
+	f.Intrinsic.Control.CallSub(frmNest_UnLoad)
+f.Intrinsic.Control.EndTry
+Program.Sub.setProperties.End
+
+Program.Sub.frmNest_UserButtonClicked.Start
+f.Intrinsic.Control.Try
+	v.Local.sSql.Declare
+	v.Local.spart.Declare
+	v.Local.iRet.Declare
+	v.Local.i.Declare
+	
+	f.Intrinsic.Control.SelectCase(V.Args.Button)
+		f.Intrinsic.Control.Case("CreatePO")
+			'Clear out all the datatables
+			gui.frmNest.txtBlah.SetFocus(1)
+			f.Data.Datatable.DeleteRow("dtPO")
+			f.Intrinsic.Control.If(v.DataView.dtNest!dvSelectLines.Exists)
+				f.Data.DataView.Close("dtNest","dvSelectLines")
+			f.Intrinsic.Control.EndIf
+			f.Intrinsic.Control.If(v.DataTable.dtSelectLines.Exists)
+				f.Data.Datatable.Close("dtSelectLines")
+			f.Intrinsic.Control.EndIf
+			
+			'Merge the selected records into the PO table
+			f.Data.DataView.Create("dtNest","dvSelectLines",22,"SelectNest=True","")
+			f.Data.DataView.ToDataTable("dtNest","dvSelectLines","dtSelectLines")
+			f.Data.Datatable.Merge("dtSelectLines","dtPO",false,4)
+			
+			gui.frmPO..Show
+			
+			
+		f.Intrinsic.Control.Case("IssueTimeMaterial")
+			gui.frmNest.txtBlah.SetFocus(1)
+			f.Data.Datatable.DeleteRow("dtTimeMat")
+			f.Intrinsic.Control.If(v.DataView.dtNest!dvSelectLines.Exists)
+				f.Data.DataView.Close("dtNest","dvSelectLines")
+			f.Intrinsic.Control.EndIf
+			f.Intrinsic.Control.If(v.DataTable.dtSelectLines.Exists)
+				f.Data.Datatable.Close("dtSelectLines")
+			f.Intrinsic.Control.EndIf
+			
+			'Merge the selected records into the PO table
+			f.Data.DataView.Create("dtNest","dvSelectLines",22,"SelectNest=True","")
+			f.Data.DataView.ToDataTable("dtNest","dvSelectLines","dtSelectLines")
+			f.Intrinsic.Control.For(v.Local.i,0,v.DataTable.dtSelectLines.RowCount--,1)
+				f.Intrinsic.String.Build("SELECT GAB_6737_STRIKER.*, LEFT(GAB_6737_STRIKER.Workorder,6) as 'JOB', right(left(gab_6737_STRIKER.WorkOrder,10),3) as 'suffix', ' ' as part  FROM GAB_6737_STRIKER WHERE NestID='{0}' ",v.DataTable.dtSelectLines(v.Local.i).NestID!fieldvaltrim,v.Local.sSql)
+				f.Data.Datatable.CreateFromSQL("dtTimeMatTemp","con",v.Local.sSql)
+				f.Data.Datatable.Merge("dtTimeMatTemp","dtTimeMat",false,4)
+				f.Data.Datatable.Close("dtTimeMatTemp")
+			f.Intrinsic.Control.Next(v.Local.i)
+			f.Intrinsic.Control.For(v.Local.i,0,v.DataTable.dtTimeMat.RowCount--,1)
+				f.Intrinsic.Control.If(v.DataTable.dtTimeMat(v.Local.i).RowState,<>,8)
+					f.Intrinsic.String.Build("SELECT PART FROM V_JOB_HEADER WHERE JOB='{0}' AND SUFFIX='{1}'",v.DataTable.dtTimeMat(v.Local.i).JOB!fieldvaltrim,v.DataTable.dtTimeMat(v.Local.i).SUFFIX!fieldvaltrim,v.Local.sSql)
+					f.ODBC.Connection!con.ExecuteAndReturn(v.Local.sSql,v.Local.spart)
+					
+					f.Intrinsic.String.Build("SELECT DESCRIPTION FROM V_JOB_HEADER WHERE JOB='{0}' AND SUFFIX='{1}'",v.DataTable.dtTimeMat(v.Local.i).JOB!fieldvaltrim,v.DataTable.dtTimeMat(v.Local.i).SUFFIX!fieldvaltrim,v.Local.sSql)
+					f.ODBC.Connection!con.ExecuteAndReturn(v.Local.sSql,v.Local.spart)
+					
+					f.Data.Datatable.SetValue("dtTimeMat",v.Local.i,"Part",v.Local.spart)
+				f.Intrinsic.Control.EndIf
+			f.Intrinsic.Control.Next(v.Local.i)
+			gui.frmIssue..Show
+			
+		f.Intrinsic.Control.Case("DeleteNest")
+			gui.frmNest.txtBlah.SetFocus(1)
+			f.Intrinsic.UI.Msgbox("Are you Sure?","Are you Sure?",4,v.Local.iRet)
+			f.Intrinsic.Control.If(v.Local.iRet,=,6)
+				'Clear out all the datatables
+				f.Intrinsic.Control.If(v.DataView.dtNest!dvSelectLines.Exists)
+					f.Data.DataView.Close("dtNest","dvSelectLines")
+				f.Intrinsic.Control.EndIf
+				f.Intrinsic.Control.If(v.DataTable.dtSelectLines.Exists)
+					f.Data.Datatable.Close("dtSelectLines")
+				f.Intrinsic.Control.EndIf
+				
+				'Create them
+				f.Data.DataView.Create("dtNest","dvSelectLines",22,"SelectNest=True","")
+				f.Data.DataView.ToDataTable("dtNest","dvSelectLines","dtSelectLines")
+				f.Intrinsic.Control.For(v.Local.i,0,v.DataTable.dtSelectLines.RowCount--,1)
+					f.Intrinsic.String.Build("DELETE FROM GAB_6737_STRIKER WHERE NESTID='{0}'",V.DataTable.dtSelectLines(v.Local.i).NestID!fieldvaltrim,v.Local.ssql)
+					f.ODBC.Connection!con.Execute(v.Local.ssql)
+				f.Intrinsic.Control.Next(v.Local.i)
+			f.Intrinsic.Control.EndIf
+			
+	f.Intrinsic.Control.EndSelect
+f.Intrinsic.Control.Catch
+	f.Intrinsic.UI.Msgbox(v.Ambient.ErrorDescription)
+	f.Intrinsic.Control.CallSub(frmNest_UnLoad)
+
+f.Intrinsic.Control.EndTry
+Program.Sub.frmNest_UserButtonClicked.End
+
+Program.Sub.frmNest_RefreshClick.Start
+f.Intrinsic.Control.Try
+	f.Data.Datatable.DeleteRow("dtNest")
+	f.Data.Datatable.CreateFromSQL("dtNestTemp","con","SELECT Distinct CAST(0 as bit) as 'SelectNest', NestID, Nestfile, MaterialCode, MaterialThickness, MaterialDescription, MaterialUsage, QtyToOrder, PurchaseOrder, PurchaseOrderLine, GSSMaterialCode, Vendor, FlexSchedule, MaterialCost FROM GAB_6737_STRIKER",true)
+	f.Data.Datatable.Merge("dtNestTemp","dtNest",false,4)
+	f.Data.Datatable.Close("dtNestTemp")
+f.Intrinsic.Control.Catch
+	f.Intrinsic.UI.Msgbox(v.Ambient.ErrorDescription)
+	f.Intrinsic.Control.CallSub(frmNest_UnLoad)
+f.Intrinsic.Control.EndTry
+Program.Sub.frmNest_RefreshClick.End
+
+Program.Sub.cmdCreatePO_Click.Start
+f.Intrinsic.Control.Try
+	gui.frmNest..Enabled(false)
+	gui.frmPO..Enabled(false)
+	v.Local.i.Declare
+	v.Local.sSql.Declare
+	v.Local.sRet.Declare
+	f.Data.Datatable.AddRow("175100","AutoNumber","Y","OpenPO","Y")
+	F.Intrinsic.Control.For(v.Local.i,0,v.DataTable.dtPO.RowCount--,1)
+		f.Intrinsic.Control.If(v.DataTable.dtPO(v.Local.i).RowState,<>,8)
+			f.Data.Datatable.AddRow("175100File","Vendor",v.Screen.frmPO!txt1.Text,"Part",v.DataTable.dtPO(v.Local.i).GSSMaterialCode!fieldvaltrim,"Description",v.DataTable.dtPO(v.Local.i).NestID!fieldval,"InvUM","EA","InvCost",v.DataTable.dtPO(v.Local.i).MaterialCost!fieldval,"InvQty",v.DataTable.dtPO(v.Local.i).QtyToOrder!fieldval,"POQty",v.DataTable.dtPO(v.Local.i).QtyToOrder!fieldval,"POUM","EA","POCost",v.DataTable.dtPO(v.Local.i).MaterialCost!fieldval)
+		f.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.Next(v.Local.i)
+	
+	
+	f.Intrinsic.Control.CallSub(175100Async)
+	f.Intrinsic.UI.Sleep(5)
+
+	'Post Cleanup
+	f.Intrinsic.Control.For(v.Local.i,0,v.DataTable.dtPO.RowCount--,1)
+		f.Intrinsic.String.Build("SELECT PURCHASE_ORDER, RECORD_NO FROM PO_LINES WHERE DESCRIPTION='{0}'",v.DataTable.dtPO(v.Local.i).NestID!fieldval,v.Local.sSql)
+		f.ODBC.Connection!con.ExecuteAndReturn(v.Local.sSql,v.Local.sRet)
+		f.Intrinsic.String.Split(v.Local.sRet,"*!*",v.Local.sRet)
+		
+		f.Intrinsic.String.Build("UPDATE GAB_6737_STRIKER SET PurchaseOrder='{0}', PurchaseOrderLine='{1}' WHERE NestID='{2}'",v.Local.sRet(0),v.Local.sRet(1),v.DataTable.dtPO(v.Local.i).NestID!fieldvaltrim,v.Local.sSql)
+		f.ODBC.Connection!con.Execute(v.Local.sSql)
+		
+		f.Intrinsic.String.Build("UPDATE PO_LINES SET DESCRIPTION='{0}', USER_5='{1}' WHERE PURCHASE_ORDER='{2}' AND RECORD_NO='{3}'",v.DataTable.dtPO(v.Local.i).MaterialDescription!fieldvaltrim,v.DataTable.dtPO(v.Local.i).NestID!fieldvaltrim,v.local.sRet(0),v.Local.sRet(1),v.Local.ssql)
+		f.ODBC.Connection!con.Execute(v.Local.sSql)
+		
+	f.Intrinsic.Control.Next(v.Local.i)
+	
+	f.Intrinsic.Control.CallSub(frmNest_RefreshClick)
+	
+	f.Intrinsic.Control.CallSub(frmPO_UnLoad)
+	gui.frmNest..SetFocus(1)
+	gui.frmNest..Enabled(True)
+	gui.frmPO..Enabled(True)
+	
+	
+f.Intrinsic.Control.Catch
+	f.Intrinsic.UI.Msgbox(v.Ambient.ErrorDescription)
+	f.Intrinsic.Control.CallSub(frmNest_UnLoad)
+f.Intrinsic.Control.EndTry
+Program.Sub.cmdCreatePO_Click.End
+
+Program.Sub.cmdBrowseVendor_Click.Start
+'start here
+f.Intrinsic.Control.Try
+	V.Local.sSQL.Declare(String)
+	V.Local.sCol.Declare(String)
+	V.Local.sColW.Declare(String)
+	V.Local.sRet.Declare(String)
+	V.Local.sSQL.set("SELECT NAME_VENDOR, VENDOR FROM V_VENDOR_MASTER order by NAME_VENDOR")
+	'Split Column Names into an array (*!* delimited string)
+	F.Intrinsic.String.Split("Vendor Name*!*Vendor","*!*",V.Local.sCol)
+	'Split Column widths into an array (*!* delimited string)
+	F.Intrinsic.String.Split("3000*!*600","*!*",V.Local.sColW)
+	F.Intrinsic.UI.Browser("Select a Vendor","con",V.Local.sSQL,V.Local.sCol,V.Local.sColW,V.Local.sRet)
+	F.Intrinsic.Control.If(V.Local.sRet,<>,"***CANCEL***")
+		f.Intrinsic.String.Split(v.Local.sRet,"*!*",v.Local.sRet)
+		gui.frmPO.txt1.Text(v.Local.sRet(1).trim)
+	F.Intrinsic.Control.EndIf
+f.Intrinsic.Control.Catch
+	f.Intrinsic.UI.Msgbox(v.Ambient.ErrorDescription)
+	f.Intrinsic.Control.CallSub(frmNest_UnLoad)
+f.Intrinsic.Control.EndTry
+Program.Sub.cmdBrowseVendor_Click.End
+
+Program.Sub.frmNest_UnLoad.Start
+f.ODBC.Connection!con.Close
+f.Intrinsic.Control.End
+Program.Sub.frmNest_UnLoad.End
+
+Program.Sub.frmPO_UnLoad.Start
+gui.frmPO.txt1.Text("")
+gui.frmPO..Visible(false)
+Program.Sub.frmPO_UnLoad.End
+
+Program.Sub.gsgcNestDashboard_RowCellClick.Start
+f.Intrinsic.Control.Try
+	v.Local.sCellValue.Declare
+	v.Local.bfile.Declare
+	v.Local.sPath.Declare
+	v.Local.sPO.Declare
+	v.Local.sPOLine.Declare
+	v.Local.sParams.Declare
+	
+	'Set Variables
+	gui.frmNest.gsgcNestDashboard.GetCellValueByColumnName("gvNest","PurchaseOrder",v.Args.rowindex,v.Local.sPO)
+	gui.frmNest.gsgcNestDashboard.GetCellValueByColumnName("gvNest","PurchaseOrderLine",v.Args.rowindex,v.Local.sPOLine)
+	v.Local.sCellValue.Set(v.Args.CellValue)
+	
+	f.Intrinsic.Control.If(v.Args.Column,=,"NestFile")
+		f.Intrinsic.File.Exists(v.Local.sCellvalue,v.Local.bFile)
+		f.Intrinsic.Control.If(v.Local.bFile)
+			f.Intrinsic.Task.ShellExec(v.Caller.Handle,"Open",v.Local.sCellValue.StrLit,"","",5)
+		f.Intrinsic.Control.EndIf
+	f.Intrinsic.Control.ElseIf(v.Args.column,=,"GSSMaterialCode")
+		f.Intrinsic.String.Build("{0}bin\SupplyAndDemand.exe",v.Caller.LocalGSSTempDir,v.Local.sPath)
+		f.Intrinsic.Task.SetEnvironmentVariable("PARTNUMBER",v.Local.sCellValue)
+		f.Intrinsic.Task.SetEnvironmentVariable("LOCATIONCODE","")
+		f.Intrinsic.Task.LaunchAsync(v.Local.sPath,1,v.Local.sPath)
+	f.Intrinsic.Control.ElseIf(v.Args.column,=,"PurchaseOrder","or",v.Args.column,=,"PurchaseOrderLine")
+		f.Intrinsic.Control.If(v.Local.sPO.Trim,<>,"")
+			f.Intrinsic.String.Concat("O!*!",v.Local.sPO,"!*!",v.Local.sParams)
+			f.Global.General.CallWrapperAsync(175200,v.Local.sParams)
+		f.Intrinsic.Control.EndIf
+	f.Intrinsic.Control.EndIf
+f.Intrinsic.Control.Catch
+	f.Intrinsic.UI.Msgbox(v.Ambient.ErrorDescription)
+f.Intrinsic.Control.EndTry
+Program.Sub.gsgcNestDashboard_RowCellClick.End
+
+Program.Sub.cmdProcess_Click.Start
+f.Intrinsic.Control.Try
+	V.Local.fUnitsOrig.Declare
+	V.Local.sSQL.Declare
+	V.Local.sJob.Declare
+	V.Local.fPct.Declare
+	V.Local.iUB.Declare
+	V.Local.i.Declare
+	v.Local.j.Declare(long)
+	V.Local.sTemp.Declare
+	V.Local.sText.Declare
+	V.Local.sLabour.Declare
+	V.Local.sFile.Declare
+	V.Local.sPart.Declare
+	V.Local.sLeft.Declare
+	V.Local.iPos.Declare
+	V.Local.fTotal.Declare
+	v.Local.fUnitsOpen.Declare
+	V.Local.sSfx.Declare
+	V.Local.sFlex.Declare
+	V.Local.sPartOnhand.Declare
+	v.Local.sWO.Declare
+	v.Local.sRet.Declare
+	v.Local.sMsg.Declare
+	v.Local.fIssueQty.Declare
+	
+	v.Local.dDate.Declare
+	v.Local.dDtTm.Declare
+	v.Local.fGood.Declare
+	v.Local.fBadP.Declare
+	v.Local.fHour.Declare
+	v.Local.dDate.Set(v.Ambient.Date)
+	v.Local.dDtTm.Set(v.Ambient.Now)
+	v.Local.sDate.Declare
+	f.Intrinsic.String.Format(v.Local.dDate,"MMDDYY",v.Local.sDate)
+	v.Local.sEmpl.Declare
+	v.Local.sEmpl.Set(v.Screen.frmIssue!txtEmployee.Text)
+	v.Local.sSTme.Declare
+	v.Local.sETme.Declare
+	v.Local.fLabTotal.Declare
+	v.Local.fTtlP.Declare
+	v.Local.sClsd.Declare
+
+	f.Data.Datatable.Create("dtIssue")
+	f.Data.Datatable.AddColumn("dtIssue","Job","String")
+	f.Data.Datatable.AddColumn("dtIssue","Sfx","String")
+	f.Data.Datatable.AddColumn("dtIssue","Seq","String")
+	f.Data.Datatable.AddColumn("dtIssue","Part","String")
+	f.Data.Datatable.AddColumn("dtIssue","Pct","Float")
+	f.Data.Datatable.AddColumn("dtIssue","UnitsOrig","Float")
+	f.Data.Datatable.AddColumn("dtIssue","UnitsOpen","Float")
+	f.Data.Datatable.AddColumn("dtIssue","Router","String")
+	f.Data.Datatable.AddColumn("dtIssue","IssueQty","Float")
+	
+	f.Data.Datatable.create("dtTime")
+	f.Data.Datatable.AddColumn("dtTime","Job","String")
+	f.Data.Datatable.AddColumn("dtTime","Sfx","String")
+	f.Data.Datatable.AddColumn("dtTime","Seq","String")
+	f.Data.Datatable.AddColumn("dtTime","WC","String")
+	f.Data.Datatable.AddColumn("dtTime","HoursEstimated","Float")
+	f.Data.Datatable.AddColumn("dtTime","GoodPiece","Float")
+	f.Data.Datatable.AddColumn("dtTime","BadPiece","Float")
+	f.Data.Datatable.AddColumn("dtTime","Hours","Float")
+	f.Data.Datatable.AddColumn("dtTime","UnitsComplete","Float")
+	f.Data.Datatable.AddColumn("dtTime","UnitsOpen","Float")
+	f.Data.Datatable.AddColumn("dtTime","Closed","String")
+	
+
+	f.Intrinsic.Control.If(v.Screen.frmIssue!txtSheets.text,=,"")
+		F.Intrinsic.UI.Msgbox("Please enter a quantity.")
+		Gui.frmIssue.txtSheets.SetFocus
+		F.Intrinsic.Control.ExitSub
+	f.Intrinsic.Control.EndIf
+	
+	F.Intrinsic.Control.If(V.Screen.frmIssue!txtSheets.Text,<=,0)
+		F.Intrinsic.UI.Msgbox("The quantity to issue must be greater than 0.")
+		Gui.frmIssue.txtSheets.SetFocus
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.EndIf
+	
+	f.Intrinsic.Control.If(v.Screen.frmIssue!txtTime.Text,=,"")
+		F.Intrinsic.UI.Msgbox("Please enter a quantity.")
+		Gui.frmIssue.txtTime.SetFocus
+		F.Intrinsic.Control.ExitSub
+	f.Intrinsic.Control.EndIf
+	
+	f.Intrinsic.Control.If(v.Screen.frmIssue!txtTime.Text,<=,"0")
+		F.Intrinsic.UI.Msgbox("The time entered must be greater than 0.")
+		Gui.frmIssue.txtTime.SetFocus
+		F.Intrinsic.Control.ExitSub
+	f.Intrinsic.Control.EndIf
+
+	gui.frmIssue..Enabled(false)
+	f.Intrinsic.Control.For(v.Local.i,0,v.DataTable.dtTimeMat.RowCount--,1)
+		f.Intrinsic.Control.If(v.DataTable.dtTimeMat(v.local.i).RowState,<>,8)
+		
+			'Material First
+			f.Intrinsic.String.Split(v.DataTable.dtTimeMat(v.Local.i).WorkOrder!fieldvaltrim,"-",v.Local.sWO)
+			
+			F.Intrinsic.String.Concat("Select Part, Units, Hours_Estimated, Hours_Actual, SEQ from Job_Operations where Job='",v.Local.sWO(0),"' and Suffix='",v.Local.sWO(1),"' and CODE_SORT_OPER='SHEETMETAL' ",V.Local.sSQL)
+			f.ODBC.Connection!con.ExecuteAndReturn(v.Local.sSQL,v.Local.sret)
+			f.Intrinsic.String.Split(v.Local.sRet,"*!*",v.Local.sRet)
+			
+			F.Intrinsic.Math.Sub(v.Local.sRet(2),v.Local.sRet(3),v.Local.fUnitsOpen)
+			f.Data.Datatable.AddRow("dtIssue","Job",v.Local.sWO(0),"Sfx",v.Local.sWO(1),"Seq",v.Local.sRet(4),"Part",v.DataTable.dtTimeMat(v.Local.i).MaterialCode!fieldvaltrim,"UnitsOpen",v.Local.fUnitsOpen)
+			F.Intrinsic.Control.If(v.Local.fUnitsOpen,>=,0)
+				F.Intrinsic.Math.Add(V.Local.fTotal,v.Local.fUnitsOpen,V.Local.fTotal)
+			F.Intrinsic.Control.EndIf
+			
+			'Labour Second
+			F.Intrinsic.String.Concat("Select Part, Units, Hours_Estimated, Hours_Actual, Units_Complete, Units_Open from Job_Operations where Job='",v.Local.sWO(0),"' and Suffix='",v.Local.sWO(1),"' and Seq='",v.Local.sWO(2),"' ",V.Local.sSQL)
+			f.ODBC.Connection!con.ExecuteAndReturn(v.Local.sSQL,v.Local.sret)
+			f.Intrinsic.String.Split(v.Local.sRet,"*!*",v.Local.sRet)
+			F.Intrinsic.Control.If(v.Local.sRet(2),>=,0)
+				F.Intrinsic.Math.Add(V.Local.fLabTotal,v.Local.sRet(2),V.Local.fLabTotal)
+			F.Intrinsic.Control.EndIf
+			f.Data.Datatable.AddRow("dtTime","Job",v.Local.sWO(0),"Sfx",v.Local.sWO(1),"Seq",v.Local.sWO(2),"WC",v.Local.sRet(0),"HoursEstimated",v.Local.sRet(2),"UnitsComplete",v.Local.sRet(4),"UnitsOpen",v.Local.sRet(5),"GoodPiece",v.DataTable.dtTimeMat(v.Local.i).WorkOrderQty!fieldval,"BadPiece",v.DataTable.dtTimeMat(v.Local.i).BadPiece!fieldval)
+		f.Intrinsic.Control.EndIf
+		
+	f.Intrinsic.Control.Next(v.Local.i)
+	
+	'Map in Material first
+	F.Intrinsic.Control.For(v.Local.i,0,v.DataTable.dtIssue.RowCount--,1)
+		F.Intrinsic.Control.If(v.DataTable.dtIssue(v.Local.i).UnitsOpen!fieldval,>,0)
+			F.Intrinsic.Math.Div(v.DataTable.dtIssue(v.Local.i).UnitsOpen!fieldval,V.Local.fTotal,v.Local.fPct)
+			F.Intrinsic.Math.Mult(v.Local.fPct,v.Screen.frmIssue!txtSheets.Text,v.Local.fIssueQty)
+			f.Data.Datatable.SetValue("dtIssue",v.Local.i,"Pct",v.Local.fPct,"IssueQty",v.Local.fIssueQty)
+			F.Intrinsic.String.Format(v.Local.fIssueQty,"0.0000",V.local.sTemp)
+			F.Intrinsic.String.Concat(v.Local.sText,v.DataTable.dtIssue(v.Local.i).Part!fieldvaltrim,",,,",V.Local.sTemp,",,,,,",v.DataTable.dtIssue(v.Local.i).Job!fieldvaltrim,",",v.DataTable.dtIssue(v.Local.i).Sfx!fieldvaltrim,",",v.DataTable.dtIssue(v.Local.i).Seq!fieldvaltrim,v.Ambient.NewLine,V.Local.sText)
+		F.Intrinsic.Control.EndIf
+
+		F.Intrinsic.Control.If(v.DataTable.dtIssue(v.Local.i).UnitsOpen!fieldval,<=,0)
+			f.Intrinsic.String.Concat("No open material seq qty, nothing will be issued to job ",v.DataTable.dtIssue(v.Local.i).JOB!fieldvaltrim,"-",v.DataTable.dtIssue(v.Local.i).sfx!fieldvaltrim,"' ",v.DataTable.dtIssue(v.Local.i).Part!fieldvaltrim,v.Local.smsg)
+			F.Intrinsic.UI.Msgbox(v.Local.sMsg)
+		F.Intrinsic.Control.EndIf
+		
+	F.Intrinsic.Control.Next(V.Local.i)
+	
+	'Map in Labour second
+	f.Intrinsic.Control.For(v.Local.i,0,v.DataTable.dtTime.RowCount--,1)
+		F.Intrinsic.Control.If(v.DataTable.dtTime(v.Local.i).HoursEstimated!fieldval,>,0)
+			'Determine whether to close the job
+			f.Intrinsic.Math.Add(V.DataTable.dtTime(v.Local.i).GoodPiece!fieldval,v.DataTable.dtTime(v.Local.i).UnitsComplete!fieldval,v.Local.fTtlP)
+			f.Intrinsic.Control.If(v.Local.fTtlP,>=,v.DataTable.dtTime(v.Local.i).UnitsOpen!fieldval)
+				v.Local.sClsd.Set("Y")
+			f.Intrinsic.Control.Else
+				v.Local.sClsd.Set("N")
+			f.Intrinsic.Control.EndIf
+	
+			f.Intrinsic.Math.Mult(V.DataTable.dtTime(v.Local.i).GoodPiece!fieldval,10000,v.Local.fGood)
+			f.Intrinsic.Math.Mult(V.DataTable.dtTime(v.Local.i).BadPiece!fieldval,10000,v.Local.fBadP)
+	
+			F.Intrinsic.Math.Div(v.DataTable.dtTime(v.Local.i).HoursEstimated!fieldval,V.Local.fLabTotal,v.Local.fHour)
+			f.Intrinsic.Math.Round(v.Local.fHour,2,v.Local.fHour)
+			f.Data.Datatable.SetValue("dtTime",v.Local.i,"Hours",v.Local.fHour,"Closed",v.Local.sClsd)
+			f.Intrinsic.Control.CallSub(TimeFormat,"Hours",v.Local.fHour)
+			f.Intrinsic.Variable.ArgToVar("BeginTime",v.Local.sSTme)
+			f.Intrinsic.Variable.ArgToVar("EndTime",v.Local.sETme)
+			f.Data.DataTable.AddRow("JB0455","Date",v.Local.sDate,"Employee",V.Local.sEmpl,"Job",v.DataTable.dtTime(v.Local.i).JOB!FIELDVALTRIM,"Suffix",v.DataTable.dtTime(v.Local.i).SFX!FIELDVALTRIM,"Seq",v.DataTable.dtTime(v.Local.i).SEQ!FIELDVALTRIM,"WC",v.DataTable.dtTime(v.Local.i).WC!FIELDVALTRIM,"Closed",v.Local.sClsd,"Indirect","D","StartTime",v.Local.sSTme,"StopTime",v.Local.sETme,"RateType","R","GoodPcs",v.Local.fGood,"ScrapPcs",v.Local.fBadP)
+		f.Intrinsic.Control.EndIf
+		
+		f.Intrinsic.Control.If(v.DataTable.dtTime(v.Local.i).HoursEstimated!fieldval,<=,0)
+			f.Intrinsic.String.Concat("No hours estimated, nothing will be issued to job ",v.DataTable.dtTime(v.Local.i).JOB!fieldvaltrim,"-",v.DataTable.dtTime(v.Local.i).Suffix!fieldvaltrim,"' ",v.DataTable.dtTime(v.Local.i).Part!fieldvaltrim,v.Local.smsg)
+			F.Intrinsic.UI.Msgbox(v.Local.sMsg)
+		f.Intrinsic.Control.EndIf
+	f.Intrinsic.Control.Next(v.Local.i)
+	
+	F.Intrinsic.String.Concat("I",V.Caller.CompanyCode,"IF",v.Caller.User,v.Caller.Terminal,V.Local.sTemp)
+	F.Intrinsic.String.Concat(V.Caller.FilesDir,"\",V.Local.stemp,V.Local.sFile)
+	F.Intrinsic.file.String2File(V.Local.sFile,V.Local.sText)
+
+	F.Global.General.CallWrapperSync(450100,V.Local.sTemp)
+			
+	f.Intrinsic.Control.CallSub("JB0455Sync")
+	
+	gui.frmIssue..Enabled(true)
+
+f.Intrinsic.Control.Catch
+	f.Intrinsic.UI.Msgbox(v.Ambient.ErrorDescription)
+f.Intrinsic.Control.EndTry
+Program.Sub.cmdProcess_Click.End
+
+Program.Sub.TimeFormat.Start
+f.Intrinsic.Control.Try
+	v.Local.fInput.Declare
+	v.Local.sVals.Declare
+	v.Local.iHour.Declare
+	v.Local.iMinute.Declare
+	v.Local.fMinuteDec.Declare
+	v.Local.dBeginTime.Declare
+	v.Local.dEndTime.Declare
+	v.Local.sBeginTime.Declare
+	v.Local.sEndTime.Declare
+	v.Local.sStampHour.Declare
+	v.Local.sStampDay.Declare
+	v.Local.dBeginTime.Set(v.Ambient.Now)
+	
+	v.Local.fInput.Set(v.Args.Hours)
+	
+	'gET LEFT OF DECIMAL
+	f.Intrinsic.String.Split(v.Local.fInput,".",v.Local.sVals)
+	v.Local.iHour.Set(v.Local.sVals(0))
+	f.Intrinsic.String.Concat(".",v.Local.sVals(1),v.Local.fMinuteDec)
+	
+	f.Intrinsic.Date.DateAdd("H",v.Local.iHour,v.Local.dBeginTime,v.Local.dEndTime)
+	f.Intrinsic.Math.Mult(v.Local.fMinuteDec,60,v.Local.iMinute)
+	f.Intrinsic.Date.DateAdd("N",v.Local.iMinute,v.Local.dEndTime,v.Local.dEndTime)	
+	
+	f.Intrinsic.String.Format(v.Local.dBeginTime,"HHMM",v.Local.sBeginTime)
+	f.Intrinsic.String.Format(v.Local.dEndTime,"HHMM",v.Local.sEndTime)
+	
+	f.Intrinsic.Variable.AddRV("BeginTime",v.Local.sBeginTime)
+	f.Intrinsic.Variable.AddRV("EndTime",v.Local.sEndTime)
+	
+f.Intrinsic.Control.Catch
+	f.Intrinsic.UI.Msgbox(v.Ambient.ErrorDescription)
+	f.Intrinsic.Control.CallSub(frmNest_UnLoad)
+f.Intrinsic.Control.EndTry
+Program.Sub.TimeFormat.End
+
+
+Program.Sub.frmIssue_UnLoad.Start
+gui.frmIssue..Visible(false)
+Program.Sub.frmIssue_UnLoad.End
+
+Program.Sub.Comments.Start
+${$5$}$3.0.0.0$}$1
+${$6$}$globalshop$}$20221004145106399$}$N6KCk/5vhz5oyVlDG2B4g8eDioysVRnIfCc0oO/RIbqYb/pOky8y4hsSSvKlxNE9E7hqq91ATNNZ+yPrBCuvIA==
+Program.Sub.Comments.End
